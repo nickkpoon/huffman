@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		41EF49DA1F96D4DC0066FFDC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41EF49D91F96D4DC0066FFDC /* main.cpp */; };
+		41EF49E51F96D5FB0066FFDC /* frequency.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41EF49E31F96D5FB0066FFDC /* frequency.cpp */; };
+		41EF49E81F96E4DF0066FFDC /* huffman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41EF49E71F96E4DF0066FFDC /* huffman.cpp */; };
+		41EF49EB1F96EB1A0066FFDC /* minHeap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41EF49E91F96EB1A0066FFDC /* minHeap.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,12 @@
 /* Begin PBXFileReference section */
 		41EF49D61F96D4DC0066FFDC /* CS130 huffman */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "CS130 huffman"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41EF49D91F96D4DC0066FFDC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		41EF49E31F96D5FB0066FFDC /* frequency.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = frequency.cpp; sourceTree = "<group>"; };
+		41EF49E41F96D5FB0066FFDC /* frequency.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = frequency.hpp; sourceTree = "<group>"; };
+		41EF49E61F96DBAD0066FFDC /* File.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = File.txt; sourceTree = "<group>"; };
+		41EF49E71F96E4DF0066FFDC /* huffman.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = huffman.cpp; sourceTree = "<group>"; };
+		41EF49E91F96EB1A0066FFDC /* minHeap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = minHeap.cpp; sourceTree = "<group>"; };
+		41EF49EA1F96EB1A0066FFDC /* minHeap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = minHeap.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,12 @@
 			isa = PBXGroup;
 			children = (
 				41EF49D91F96D4DC0066FFDC /* main.cpp */,
+				41EF49E31F96D5FB0066FFDC /* frequency.cpp */,
+				41EF49E71F96E4DF0066FFDC /* huffman.cpp */,
+				41EF49E41F96D5FB0066FFDC /* frequency.hpp */,
+				41EF49E61F96DBAD0066FFDC /* File.txt */,
+				41EF49E91F96EB1A0066FFDC /* minHeap.cpp */,
+				41EF49EA1F96EB1A0066FFDC /* minHeap.hpp */,
 			);
 			path = "CS130 huffman";
 			sourceTree = "<group>";
@@ -120,6 +135,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				41EF49DA1F96D4DC0066FFDC /* main.cpp in Sources */,
+				41EF49E51F96D5FB0066FFDC /* frequency.cpp in Sources */,
+				41EF49EB1F96EB1A0066FFDC /* minHeap.cpp in Sources */,
+				41EF49E81F96E4DF0066FFDC /* huffman.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
