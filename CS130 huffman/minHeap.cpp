@@ -12,98 +12,135 @@
 
 using namespace std;
 
-template<class T> Q<T>::Q(int s) {
+template<class MIN> heap<MIN>::heap(int s)
+{
     array_size = s;
     heap_size = -1;
-    A = new T*[s];
+    myArray = new MIN*[s];
 }
 
-template<class T> Q<T>::~Q() {
-    delete A;
+template<class MIN> heap<MIN>::~heap()
+{
+    delete myArray;
 }
 
-template<class T> bool Q<T>::isEmpty() {
-    return heap_size < 0;
-}
-
-template<class T> bool Q<T>::isFull() {
+template<class MIN> bool heap<MIN>::full()
+{
     return heap_size >= array_size - 1;
 }
 
-template<class T> T** Q<T>::getArray() {
-    return A;
+template<class MIN> bool heap<MIN>::empty()
+{
+    return heap_size < 0;
 }
 
-template<class T> int Q<T>::getArraySize() {
-    return array_size;
+template<class MIN> MIN* heap<MIN>::minimum()
+{
+    return myArray[0];
 }
 
-template<class T> T* Q<T>::minimum() {
-    return A[0];
-}
-
-template<class T> int Q<T>::left(int i) {
+template<class MIN> int heap<MIN>::leftNode(int i)
+{
     return 2 * (i + 1) - 1;
 }
 
-template<class T> int Q<T>::right(int i) {
+template<class MIN> int heap<MIN>::rightNode(int i)
+{
     return 2 * (i + 1);
 }
 
-template<class T> int Q<T>::parent(int i) {
+template<class MIN> int heap<MIN>::parentNode(int i)
+{
     return max((i + 1) / 2 - 1, 0);
 }
 
-template<class T> T* Q<T>::extractMin() {
-    if (isEmpty()) {
-        cout << "Underflow...\n";
-        T* t;
-        return t;
-    } else {
-        T* min = A[0];
-        A[0] = A[heap_size];
-        heap_size--;
-        minHeapify(0);
-        return min;
-    }
+
+template<class MIN> int heap<MIN>::getSize()
+{
+    return array_size;
 }
 
-template<class T> void Q<T>::minHeapify(int i) {
-    int l = left(i);
-    int r = right(i);
-    int smallest = i;
-    if (l <= heap_size && ((*(A[l])) < (*(A[i])))) {
-        smallest = l;
-    }
-    if (r <= heap_size && ((*(A[r])) < (*(A[smallest])))) {
-        smallest = r;
-    }
-    if (smallest != i) {
-        T* t = A[i];
-        A[i] = A[smallest];
-        A[smallest] = t;
-        minHeapify(smallest);
-    }
-}
-
-template<class T> bool Q<T>::insert(T* key) {
-    if (isFull()) {
-        cout << "Overflow...\n";
+template<class MIN> bool heap<MIN>::put(MIN* key)
+{
+    if (full())
+    {
+        cout << "HEAP IS FULL";
         return false;
-    } else {
+    }
+    
+    else
+        
+    {
         heap_size++;
-        decreaseKey(heap_size, key);
+        lower(heap_size, key);
         return true;
     }
 }
 
-template<class T> void Q<T>::decreaseKey(int i, T* key) {
-    A[i] = key;
-    while ((i > 0) && ((*(A[parent(i)])) > (*(A[i])))) {
-        T* t = A[i];
-        A[i] = A[parent(i)];
-        A[parent(i)] = t;
-        i = parent(i);
+
+template<class MIN> MIN** heap<MIN>::getArray()
+{
+    return myArray;
+}
+
+template<class MIN> MIN* heap<MIN>::getMin()
+{
+    if (empty())
+    {
+        cout << "HEAP IS EMPTY\n";
+        MIN* t;
+        return t;
+    }
+    
+    else
+    
+    {
+        MIN* min = myArray[0];
+        myArray[0] = myArray[heap_size];
+        heap_size--;
+        minimize(0);
+        return min;
+    }
+}
+
+template<class MIN> void heap<MIN>::minimize(int i)
+{
+    int l = leftNode(i);
+    int r = rightNode(i);
+    int smallest = i;
+    
+    
+    if (l <= heap_size && ((*(myArray[l])) < (*(myArray[i]))))
+    {
+        smallest = l;
+    }
+    
+    if (r <= heap_size && ((*(myArray[r])) < (*(myArray[smallest]))))
+    {
+        smallest = r;
+    }
+    
+    if (smallest != i)
+    {
+        MIN* t = myArray[i];
+        myArray[i] = myArray[smallest];
+        myArray[smallest] = t;
+        minimize(smallest);
+    }
+}
+
+
+template<class MIN> void heap<MIN>::lower(int i, MIN* key)
+{
+    myArray[i] = key;
+    
+    while ((i > 0) && ((*(myArray[parentNode(i)])) > (*(myArray[i]))))
+    {
+        MIN* t = myArray[i];
+        myArray[i] = myArray[parentNode(i)];
+        
+        myArray[parentNode(i)] = t;
+        i = parentNode(i);
     }
 }
 

@@ -11,27 +11,28 @@
 
 #include <stdio.h>
 
-template<class T> class Q {
+template<class MIN> class heap
+{
     int array_size, heap_size;
-    T** A; // pointer for the array
+    MIN** myArray;
     
 public:
-    Q(int s);
-    ~Q();
-    bool isEmpty();
-    bool isFull();
-    T** getArray();
-    int getArraySize();
-    T* minimum();
-    T* extractMin();
-    bool insert(T*);
+    heap(int s);
+    ~heap();
+    bool full();
+    bool empty();
+    int getSize();
+    MIN** getArray();
+    MIN* minimum();
+    MIN* getMin();
+    bool put(MIN*);
     
 private:
-    int left(int i);
-    int right(int i);
-    int parent(int i);
-    void decreaseKey(int, T*);
-    void minHeapify(int);
+    int leftNode(int i);
+    int rightNode(int i);
+    int parentNode(int i);
+    void lower(int, MIN*);
+    void minimize(int);
 };
 
-#endif /* minHeap_hpp */
+#endif

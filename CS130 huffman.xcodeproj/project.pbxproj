@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		41EF49DA1F96D4DC0066FFDC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41EF49D91F96D4DC0066FFDC /* main.cpp */; };
-		41EF49E51F96D5FB0066FFDC /* frequency.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41EF49E31F96D5FB0066FFDC /* frequency.cpp */; };
+		41EF49E51F96D5FB0066FFDC /* frequencies.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41EF49E31F96D5FB0066FFDC /* frequencies.cpp */; };
 		41EF49E81F96E4DF0066FFDC /* huffman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41EF49E71F96E4DF0066FFDC /* huffman.cpp */; };
 		41EF49EB1F96EB1A0066FFDC /* minHeap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41EF49E91F96EB1A0066FFDC /* minHeap.cpp */; };
+		41EF49ED1F97150C0066FFDC /* encode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41EF49EC1F97150C0066FFDC /* encode.cpp */; };
+		41EF49F31F9727BD0066FFDC /* decode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41EF49F21F9727BC0066FFDC /* decode.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,13 +28,17 @@
 
 /* Begin PBXFileReference section */
 		41EF49D61F96D4DC0066FFDC /* CS130 huffman */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "CS130 huffman"; sourceTree = BUILT_PRODUCTS_DIR; };
-		41EF49D91F96D4DC0066FFDC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		41EF49E31F96D5FB0066FFDC /* frequency.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = frequency.cpp; sourceTree = "<group>"; };
-		41EF49E41F96D5FB0066FFDC /* frequency.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = frequency.hpp; sourceTree = "<group>"; };
-		41EF49E61F96DBAD0066FFDC /* File.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = File.txt; sourceTree = "<group>"; };
+		41EF49E31F96D5FB0066FFDC /* frequencies.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = frequencies.cpp; sourceTree = "<group>"; };
+		41EF49E61F96DBAD0066FFDC /* input */ = {isa = PBXFileReference; lastKnownFileType = text; path = input; sourceTree = "<group>"; };
 		41EF49E71F96E4DF0066FFDC /* huffman.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = huffman.cpp; sourceTree = "<group>"; };
 		41EF49E91F96EB1A0066FFDC /* minHeap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = minHeap.cpp; sourceTree = "<group>"; };
 		41EF49EA1F96EB1A0066FFDC /* minHeap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = minHeap.hpp; sourceTree = "<group>"; };
+		41EF49EC1F97150C0066FFDC /* encode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = encode.cpp; sourceTree = "<group>"; };
+		41EF49EF1F971D820066FFDC /* code */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = code; sourceTree = "<group>"; };
+		41EF49F11F9727040066FFDC /* encoded */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = encoded; sourceTree = "<group>"; };
+		41EF49F21F9727BC0066FFDC /* decode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = decode.cpp; path = "/Users/nickkpoon/Documents/CS130B/CS130 huffman/CS130 huffman/decode.cpp"; sourceTree = "<absolute>"; };
+		41EF49F41F9729C50066FFDC /* makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; name = makefile; path = "/Users/nickkpoon/Documents/CS130B/CS130 huffman/CS130 huffman/makefile"; sourceTree = "<absolute>"; };
+		41EF49F51F972AE70066FFDC /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.txt; path = "/Users/nickkpoon/Documents/CS130B/CS130 huffman/CS130 huffman/README.txt"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,11 +71,15 @@
 		41EF49D81F96D4DC0066FFDC /* CS130 huffman */ = {
 			isa = PBXGroup;
 			children = (
-				41EF49D91F96D4DC0066FFDC /* main.cpp */,
-				41EF49E31F96D5FB0066FFDC /* frequency.cpp */,
+				41EF49F51F972AE70066FFDC /* README.txt */,
+				41EF49F41F9729C50066FFDC /* makefile */,
+				41EF49F11F9727040066FFDC /* encoded */,
+				41EF49F21F9727BC0066FFDC /* decode.cpp */,
+				41EF49E31F96D5FB0066FFDC /* frequencies.cpp */,
 				41EF49E71F96E4DF0066FFDC /* huffman.cpp */,
-				41EF49E41F96D5FB0066FFDC /* frequency.hpp */,
-				41EF49E61F96DBAD0066FFDC /* File.txt */,
+				41EF49EC1F97150C0066FFDC /* encode.cpp */,
+				41EF49EF1F971D820066FFDC /* code */,
+				41EF49E61F96DBAD0066FFDC /* input */,
 				41EF49E91F96EB1A0066FFDC /* minHeap.cpp */,
 				41EF49EA1F96EB1A0066FFDC /* minHeap.hpp */,
 			);
@@ -134,9 +143,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41EF49DA1F96D4DC0066FFDC /* main.cpp in Sources */,
-				41EF49E51F96D5FB0066FFDC /* frequency.cpp in Sources */,
+				41EF49E51F96D5FB0066FFDC /* frequencies.cpp in Sources */,
+				41EF49ED1F97150C0066FFDC /* encode.cpp in Sources */,
 				41EF49EB1F96EB1A0066FFDC /* minHeap.cpp in Sources */,
+				41EF49F31F9727BD0066FFDC /* decode.cpp in Sources */,
 				41EF49E81F96E4DF0066FFDC /* huffman.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

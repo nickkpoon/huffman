@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/nickkpoon/Documents/CS130B/CS130 huffman/CS130 huffman/README.txt">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/nickkpoon/Documents/CS130B/CS130 huffman/CS130 huffman/makefile">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/nickkpoon/Documents/CS130B/CS130 huffman/CS130 huffman/decode.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:../CS130 huffman/encoded">
+   </FileRef>
+   <FileRef
       location = "self:CS130 huffman.xcodeproj">
    </FileRef>
 </Workspace>

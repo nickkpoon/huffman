@@ -12,129 +12,207 @@
 #include <sstream>
 #include <algorithm>
 #include <iterator>
+#include <fstream>
 #include "minHeap.cpp"
 
-class Node {
-public:
-    int name;
-    int f;
-    Node *left, *right;
-    string code;
-    
-    Node() {
-        name = INT_MAX;
-        code = "";
-        f = INT_MAX;
-        left = right = 0;
-    }
-    
-    Node(int ff, int n) {
-        name = n;
-        f = ff;
-        left = right = 0;
-        code = "";
-    }
-    
-    ~Node() {
-        delete left;
-        delete right;
-    }
-    
-    bool operator<(Node &param) {
-        return f < param.f;
-    }
-    
-    bool operator>(Node &param) {
-        return f > param.f;
-    }
-    
-    bool operator==(Node &param) {
-        return f == param.f;
-    }
-    
-    static void display(Node*, bool);
-    static void encode(Node*);
-    
-    friend ostream& operator <<(ostream&, Node&);
+using namespace std;
+
+
+
+struct MyStreamingHelper
+{
+    MyStreamingHelper(ostream& out1,
+                      ostream& out2) : out1_(out1), out2_(out2) {}
+    ostream& out1_;
+    ostream& out2_;
 };
 
-void Node::display(Node* node, bool leavesOnly = 1) {
-    if (node == 0) {
-        return;
-    }
-    display(node->left, leavesOnly);
-    if (leavesOnly)
-    {
-        if (node->left == 0 && node->right == 0)
-        {
-            if(node->f !=0)
-            {
-                //cout << *node << "\n";
-                cout << node->name << " " << node->code << endl;
+template <typename T>
+MyStreamingHelper& operator<<(MyStreamingHelper& h, T const& t)
+{
+    h.out1_ << t;
+    h.out2_ << t;
+    return h;
+}
 
-            }
-        }
-    }
-    else
-    {
-        if(node->f !=0)
-        {
-            //cout << *node << "\n";
-            cout << node->name << " " << node->code << endl;
-
-        }
-    }
-    display(node->right, leavesOnly);
+MyStreamingHelper& operator<<(MyStreamingHelper& h, ostream&(*f)(ostream&))
+{
+    h.out1_ << f;
+    h.out2_ << f;
+    return h;
 }
 
 
-
-void Node::encode(Node* node)
+class Node
 {
+public:
+    
+    Node *leftNode;
+    Node *rightNode;
+    
+    int character;
+    int frequency;
+
+    string huff; //the binary code for tree traversal
+    
+    Node()
+    {
+        leftNode = 0;
+        rightNode = 0;
+        
+        character = INT_MAX;
+        frequency = INT_MAX;
+
+        
+        huff = "";
+
+    }
+    
+    Node(int freq, int ascii)
+    {
+        leftNode = 0;
+        rightNode = 0;
+        
+        character = ascii;
+        frequency = freq;
+        
+        huff = "";
+    }
+    
+    ~Node()
+    {
+        delete leftNode;
+        delete rightNode;
+    }
+
+    bool operator==(Node &param)
+    {
+        return frequency == param.frequency;
+    }
+    bool operator<(Node &param)
+    {
+        return frequency < param.frequency;
+    }
+    bool operator>(Node &param)
+    {
+        return frequency > param.frequency;
+    }
+    
+    static void getCode(Node*);
+    static void show(Node*, bool);
+};
+
+void Node::getCode(Node* node)
+{
+    
     if (node == 0)
     {
         return;
     }
-    if (node->left != 0)
+    
+    if (node->leftNode != 0)
     {
-        node->left->code = node->code + "0";
+        node->leftNode->huff = node->huff + "0";
     }
-    if (node->right != 0)
+    
+    if (node->rightNode != 0)
     {
-        node->right->code = node->code + "1";
+        node->rightNode->huff = node->huff + "1";
     }
-    encode(node->left);
-    encode(node->right);
+    
+    
+    
+    getCode(node->leftNode);
+    getCode(node->rightNode);
+    
 }
 
 
-void huffman(int *freqs, int *names, int length)
+void Node::show(Node* node, bool leavesOnly = 1)
 {
-    Q<Node> *q = new Q<Node > (length);
+    //ofstream myfile;
+   // myfile.open ("huffmancode.txt");
+
+    if (node == 0)
+    {
+        return;
+    }
+    
+    
+    show(node->leftNode, leavesOnly);
+    
+    
+    if (leavesOnly)
+    {
+        if (node->leftNode == 0 && node->rightNode == 0)
+        {
+            if(node->frequency !=0)
+            {
+                //cout << *node << "\n";
+                cout << node->character << " " << node->huff << endl;
+
+            }
+        }
+    }
+    
+    
+    else
+        
+        
+    {
+        if(node->frequency !=0)
+            
+        {
+            
+            //cout << *node << "\n";
+            cout << node->character << " " << node->huff << endl;
+
+        }
+    }
+    
+    show(node->rightNode, leavesOnly);
+   // myfile.close();
+
+}
+
+
+void huffman(int *frequency, int *characters, int length)
+{
+    heap<Node> *min = new heap<Node > (length);
+    
+    
     for (int i = 0; i < length; i++)
     {
-        q->insert(new Node(freqs[i], names[i]));
+        min->put(new Node(frequency[i], characters[i]));
     }
+    
+    //cout << PASSED FIRST FOR LOOP IN HUFF
     
     for (int i = 0; i < length - 1; i++)
     {
-        Node *x = q->extractMin();
-        Node *y = q->extractMin();
-        Node *z = new Node(x->f + y->f, x->name + y->name);
-        z->left = x;
-        z->right = y;
-        q->insert(z);
+        Node *x = min->getMin();
+        Node *y = min->getMin();
+        Node *z = new Node(x->frequency + y->frequency, x->character + y->character);
+        
+        z->leftNode = x;
+        z->rightNode = y;
+        
+        min->put(z);
     }
-    Node *root = q->extractMin();
+    
+    //cout << PASSED SECOND FOR LOOP IN HUFF
+    
+    Node *root = min->getMin();
      
-    Node::encode(root);
-    Node::display(root);
-    cout << endl;
+    Node::getCode(root);
+    Node::show(root);
 }
 
 
 int main()
 {
+
+    
     string input = "";
     int count = 0;
     int first[256] = {0};
@@ -146,11 +224,9 @@ int main()
         istringstream(input) >> first[count] >> second[count];
         
         count++;
-        
-        
     }
     
-    int* character = new int[count];
+    int* chars = new int[count];
     int* frequency = new int[count];
     int inc1 = 0;
     int inc2 = 0;
@@ -158,19 +234,18 @@ int main()
     {
         if(first[i]!=0)
         {
-            character[inc1] = first[i];
+            chars[inc1] = first[i];
             inc1++;
             
         }
         if(second[i]!=0)
         {
             frequency[inc2] = second[i];
-            cout << frequency[inc2]<< endl;
+            //cout << frequency[inc2]<< endl;    FOR DEBUG
             inc2++;
         }
         
     }
     
-    huffman(frequency, character, count);
-
+    huffman(frequency, chars, count);
 }
